@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+now = Time.current
+
+places = 10000.times.map do
+  lng = 139.767125 + rand(-0.1 .. 0.1)
+  lat = 35.681236 + rand(-0.1 .. 0.1)
+
+  {
+    geom: "POINT(#{lng.to_f} #{lat.to_f})",
+    updated_at: now,
+    created_at: now
+  }
+end
+
+Place.insert_all(places)
