@@ -1,0 +1,32 @@
+version: "3"
+volumes:
+  pg_data:
+    driver: local
+services:
+  pg:
+    image: postgis/postgis:11-2.5-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  app:
+    image: rails_postgis_sample_dev
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    command: >
+      /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/src
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    environment:
+      DB_HOST: pg
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      DB_PORT: 5432
+    depends_on:
+      - pg
