@@ -1,24 +1,12 @@
-# README
+# Ruby on Rails + PostGIS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+![browser](https://user-images.githubusercontent.com/60980/85485004-dfd9bc80-b602-11ea-9217-884bb41d285b.png)
 
-Things you may want to cover:
+## Try it
 
-* Ruby version
+```bash
+$ docker-compose run app bundle exec rails db:setup
+$ docker-compose up
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+http://localhost:3000
